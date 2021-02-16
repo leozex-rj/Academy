@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<title>+ Inserir Alunos</title>
+<meta name="author" content="Leandro lopez"/>
+<script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"
+      data-auto-a11y="true"></script>
+</head>
+<body>
+
+	<div th:replace="fragmentos/fragmentos :: cabecalho"></div>
+	
+	<div class="container" style="margin-top: 50px;">
+	<h4>+ Inserir Alunos</h4>
+	<hr>
+	<br>
+		<form method="post" action="/InsertAlunos" th:object="${aluno}" autocomplete="off">
+			<div class="row">
+				<div class="col-md-6 form-group offset-md-3">
+					<label>Nome do Aluno:</label>
+					<input class="form-control" placeholder="Ex: Leandro Lopez" th:field="*{nome}">
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-6 form-group offset-md-3">
+					<label>Selecione o Curso:</label>
+					<select class="form-control" th:field="*{curso}">
+						<option th:each="curso : ${T(br.com.Academy.Enums.Curso).values()}" th:value="${curso}" th:text="${curso}"></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-6 form-group offset-md-3">
+					<label>Gerar Matrícula:</label>
+					<input class="form-control" id="matricula" th:field="*{matricula}">
+					<button type="button" onclick="GerarMatricula();" class="btn btn-dark" style="margin-top: 10px;">Gerar</button>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-6 form-group offset-md-3">
+					<label>Selecione o Status:</label>
+					<select class="form-control" th:field="*{status}">
+						<option th:each="status : ${T(br.com.Academy.Enums.Status).values()}" th:value="${status}" th:text="${status}"></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-6 form-group offset-md-3">
+					<label>Turno:</label>
+					<input class="form-control" placeholder="Ex: Manhã" th:field="*{turno}">
+				</div>
+			</div>
+			
+			<div class="row">
+				<button type="submit" class="btn btn-success offset-md-5">Salvar</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="btn btn-outline-danger">VOLTAR</a>
+			</div>
+			
+		</form>
+	
+	</div>
+	
+	<script src="js/main.js"></script>
+	<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
